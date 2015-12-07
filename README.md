@@ -10,3 +10,5 @@ Some fun new features added to the tree this year:
 * Analytics via Keen.io (reported on by phone call)
 * Speech Recognition over the web via the Web Speech API
 * A Slack slash command to control the tree
+
+For setup/development/deployment instructions for each piece, please check the README in each directory.
