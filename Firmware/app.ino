@@ -61,10 +61,10 @@ void setup() {
     pinMode(led, OUTPUT);
     digitalWrite(led, LOW);
 
-    Spark.function("color", setColor);
-    Spark.function("pixel", setPixel);
-    Spark.function("wipe", wipe);
-    Spark.function("rainbow", startRainbow);
+    Particle.function("color", setColor);
+    Particle.function("pixel", setPixel);
+    Particle.function("wipe", wipe);
+    Particle.function("rainbow", startRainbow);
 
     strip.begin();
 
@@ -77,7 +77,7 @@ void setup() {
 
 void loop() {
     if (firstRun) {
-        colorWipe(Color(0, 0, 0), 15);
+        colorWipe(Color(255, 255, 255), 15);
         firstRun=false;
     }
 }
@@ -172,6 +172,38 @@ int wipe(String command) {
     int i;
 
     for (i=0; i < strip.numPixels(); i++) {
+        strip.setPixelColor(i, red, green, blue);
+        strip.show();
+        delay(50);
+    }
+}
+
+int alternate(String command) {
+    // format is NN,[RRR,GGG,BBB],[RRR,GGG,BBB],[]
+    // NN = number of colors to alternate between, i.e. 03
+    // with one set of [RRR,GGG,BBB] for each
+    int n = command.substring(0,2).toInt();
+    int colors;
+    int i;
+
+    // Start with a blank slate
+    colorWipe(Color(0, 0, 0), 15);
+
+    for (i=0; i<n; i++) {
+        // each color to alternate between
+        int start = 14 * i + 3;
+        int end = start + 13;
+        colors[i] = command.substring(start, end);
+    }
+
+    for (i=0; i < strip.numPixels(); i++) {
+        int colorIndex = i % n;
+        String color = colors[colorIndex];
+        // format is [RRR,GGG,BBB]
+        // ie 1st red is [255,000,000]
+        int red = color.substring(1,4).toInt();
+        int green = color.substring(5,8).toInt();
+        int blue = color.substring(9,12).toInt();
         strip.setPixelColor(i, red, green, blue);
         strip.show();
         delay(50);
