@@ -1,7 +1,7 @@
 Lambda functions
 ---
 
-These directories each include a Lambda function. They use [Virtualenv](https://virtualenv.readthedocs.org/en/latest/) for managing dependencies.
+These directories each include a Lambda function. They use [Virtualenv](https://virtualenv.readthedocs.org/en/latest/) for managing dependencies. These are designed to reside behind an AWS API Gateway distribution with specific mapping templates and Staging variables.
 
 ### Requirements
 
