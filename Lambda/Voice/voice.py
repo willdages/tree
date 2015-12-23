@@ -1,10 +1,8 @@
 from __future__ import print_function
-import boto3
 import keen
 import json
-import emoji
 
-def lambda_handler(event, context):
+def handler(event, context):
   print(json.dumps(event))
 
   # A filter for Keen to only return stats for this device
