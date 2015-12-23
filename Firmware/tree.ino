@@ -62,7 +62,6 @@ void setup() {
     digitalWrite(led, LOW);
 
     Particle.function("color", setColor);
-    Particle.function("pixel", setPixel);
     Particle.function("wipe", wipe);
     Particle.function("rainbow", startRainbow);
     Particle.function("alternate", alternate);
