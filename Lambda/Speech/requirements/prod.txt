@@ -1,0 +1,6 @@
+keen==0.3.20
+Padding==0.4
+pycrypto==2.6.1
+requests==2.8.1
+tinycss2==0.5
+webencodings==0.4
