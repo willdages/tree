@@ -73,23 +73,11 @@ class TestStringMethods(unittest.TestCase):
     tree.update.assert_called_with('rainbow', '1')
 
 
-  def test_pixel_to_color(self):
-    tree = Tree({})
-    tree.update = MagicMock()
-    tree.pixel_to_color(2, '[255,000,255]')
-    tree.update.assert_called_with('pixel', '02,[255,000,255]')
-    tree.pixel_to_color(20, '[255,000,255]')
-    tree.update.assert_called_with('pixel', '20,[255,000,255]')
-
-
   def test_alternate(self):
     tree = Tree({})
-    tree.set_color = MagicMock()
-    tree.pixel_to_color = MagicMock(return_value=200)
+    tree.update = MagicMock()
     tree.alternate(['blue', 'red'])
-    tree.set_color.assert_called_once_with('[000,000,255]')
-    tree.pixel_to_color.assert_called_with(23, '[255,000,000]')
-    self.assertEqual(tree.pixel_to_color.call_count, 12)
+    tree.update.assert_called_once_with('alternate', '02,[000,000,255],[255,000,000]')
 
 
 if __name__ == '__main__':

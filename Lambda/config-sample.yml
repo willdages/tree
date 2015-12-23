@@ -1,6 +1,6 @@
 src_files:
   - function.py
-extra_files:
+  - ../shared/another.py
 requirements_file: requirements/prod.txt
 distribution_dir: dist
 distribution_archive: zipped_file_name
