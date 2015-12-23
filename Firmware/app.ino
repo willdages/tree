@@ -65,6 +65,7 @@ void setup() {
     Particle.function("pixel", setPixel);
     Particle.function("wipe", wipe);
     Particle.function("rainbow", startRainbow);
+    Particle.function("alternate", alternate);
 
     strip.begin();
 
@@ -77,7 +78,7 @@ void setup() {
 
 void loop() {
     if (firstRun) {
-        colorWipe(Color(255, 255, 255), 15);
+        colorWipe(Color(255, 255, 255), 0);
         firstRun=false;
     }
 }
@@ -183,7 +184,7 @@ int alternate(String command) {
     // NN = number of colors to alternate between, i.e. 03
     // with one set of [RRR,GGG,BBB] for each
     int n = command.substring(0,2).toInt();
-    int colors;
+    String colors [n];
     int i;
 
     // Start with a blank slate
