@@ -31,12 +31,6 @@ class Tree:
         return self.update('rainbow', loop)
 
 
-    def pixel_to_color(self, pixel, rgb_string):
-        p = '{0:02d}'.format(pixel)
-        pixel_string = '{0},{1}'.format(p, rgb_string)
-        return self.update('pixel', pixel_string)
-
-
     def make_color_string(self, rgba):
         strings = ['{0:03d}'.format(int(round(255*color))) for color in rgba]
         rgb_string = '[{0},{1},{2}]'.format(strings[0], strings[1], strings[2])
@@ -47,24 +41,19 @@ class Tree:
 
 
     def alternate(self, colors):
-        for index, color in enumerate(colors):
+        if len(colors) > 6:
+            return 'More than 6 colors? That is madness. Also, I can\'t remember more than 4 things at a time right now, sorry :/'
+        colorStrings = []
+        for color in colors:
             rgba = color3.parse_color(color)
             if rgba is None:
-                return 'Sorry, I don\'t recognize {} as a color. I\'m only a tree, not the Google'.format(color)
+                return 'Sorry, I ran across a color that I didn\'t recognize ({}).'.format(color)
 
             rgb_string = self.make_color_string(rgba)
-            if index == 0:
-                # Save on requests by starting with a wipe, and then cherry-picking the rest
-                self.set_color(rgb_string)
-            else:
-                for led in xrange(index, 25, len(colors)):
-                    # If 2 colors defined, set every other LED to this color.
-                    # If 3 colors defined, set every third LED to this color. ...etc
-                    response = self.pixel_to_color(led, rgb_string)
-                    if response is not 200:
-                        break
+            colorStrings.append(rgb_string)
 
-        return 200
+        command = '{0:02d},{1}'.format(len(colors), ','.join(colorStrings))
+        return self.update('alternate', command)
 
 
     def update(self, fn, data):
