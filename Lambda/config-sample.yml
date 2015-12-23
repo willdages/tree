@@ -1,0 +1,13 @@
+src_files:
+  - function.py
+extra_files:
+requirements_file: requirements/prod.txt
+distribution_dir: dist
+distribution_archive: zipped_file_name
+lambda_description: Does what Lambdas do
+lambda_runtime: python2.7
+lambda_timeout: 10
+lambda_memory_size: 128
+lambda_function_name: FunctionName
+lambda_handler: file_name.method_name
+lambda_role: arn:aws:iam::[accountid]:role/[lambda_role]
