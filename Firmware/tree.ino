@@ -1,3 +1,10 @@
+/*
+    Most of this code was written by the Adafruit team, but I have added and
+    modified a few things, 'alternate' really being the only one of substance.
+    Thanks to the Adafruit team for writing and distributing such awesome
+    code — it made this project possible. — @willdages
+*/
+
 /* ========================== Application.cpp =========================== */
 
 #include "WS2801/WS2801.h"
@@ -34,17 +41,6 @@ const int numPixel = 25;
 
 // Set the argument to the NUMBER of pixels.
 Adafruit_WS2801 strip = Adafruit_WS2801(numPixel);
-
-// For 36mm LED pixels: these pixels internally represent color in a
-// different format.  Either of the above constructors can accept an
-// optional extra parameter: WS2801_RGB is 'conventional' RGB order
-// WS2801_GRB is the GRB order required by the 36mm pixels.  Other
-// than this parameter, your code does not need to do anything different;
-// the library will handle the format change.  Example:
-//Adafruit_WS2801 strip = Adafruit_WS2801(25, WS2801_GRB);
-
-
-String http_get(const char* hostname, String path);
 
 int led = D7;
 long previousMillis = 0;
